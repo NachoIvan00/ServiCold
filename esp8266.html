@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor ESP8266</title>
+    <link rel="icon" href="https://servicold.000webhostapp.com/src/favicon.png" type="image/x-icon">
+    <!-- Enlace a Bootstrap 5 desde tu carpeta npm -->
+    <link rel="stylesheet" href="https://servicold.000webhostapp.com/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Enlace a tu archivo de estilos CSS -->
+    <link rel="stylesheet" type="text/css" href="https://servicold.000webhostapp.com/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Enlace a JavaScript de Bootstrap 5 -->
+    <script src="https://servicold.000webhostapp.com/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- Cabecera -->
+    <header>
+        <div class="container-fluid text-center">
+            <nav class="navbar navbar-expand-md navbar-light justify-content-center">
+                <!-- Enlace al índice (página principal) -->
+                <a href="index.html" id="main-link" class="navbar-brand">
+                    <img src="https://servicold.000webhostapp.com/src/logo-servicold.png" alt="Logo de ServiCold" class="logo" style="height: 60px;">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección principal -->
+    <div class="container principal">
+        <h1>Sensor ESP8266</h1>
+
+        <!-- Formulario para ingresar los valores mínimo y máximo -->
+        <form id="filterForm" class="row g-3 col-md-12">
+            <!-- Campo para temperatura mínima -->
+            <div class="col-md-4">
+                <label for="tempMin" class="form-label">Temperatura Mínima:</label>
+                <input type="number" id="tempMin" name="tempMin" step="0.1" placeholder="Mínima" class="form-control" onchange="handleFilterChange()">
+            </div>
+            <!-- Campo para temperatura máxima -->
+            <div class="col-md-4">
+                <label for="tempMax" class="form-label">Temperatura Máxima:</label>
+                <input type="number" id="tempMax" name="tempMax" step="0.1" placeholder="Máxima" class="form-control" onchange="handleFilterChange()">
+            </div>
+            <!-- Menú desplegable para seleccionar la cantidad de valores a visualizar -->
+            <div class="col-md-4">
+                <label for="dataLimit" class="form-label">Cantidad de lecturas:</label>
+                <select id="dataLimit" name="dataLimit" onchange="handleDataLimitChange()" class="form-select">
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                </select>
+            </div>
+        </form>
+
+        <!-- Tabla para mostrar los resultados -->
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <table id="resultTable" class="table mt-4 col-md-12">
+                <thead>
+                    <tr>
+                        <th>Temperatura (°C)</th>
+                        <th>Humedad (%)</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody">
+                    <!-- Los resultados se agregarán aquí -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Contenedor centrado para el gráfico -->
+        <div class="col-md-12" style="display: flex; justify-content: center; margin-top: 25px; width: 100%;">
+            <canvas id="sensorChart" style="width: 100%; max-width: 100%; height: 550px;"></canvas>
+        </div>
+
+        <!-- Enlace al archivo de scripts JavaScript -->
+        <script src="https://servicold.000webhostapp.com/sensores.js"></script>
+    </div>
+</body>
+</html>

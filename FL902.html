@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sensor FL-902</title>
+        <link rel="icon" href="https://servicold.000webhostapp.com/src/favicon.png" type="image/x-icon">
+        <!-- Enlace a Bootstrap 5 -->
+        <link rel="stylesheet" href="https://servicold.000webhostapp.com/node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <!-- Enlace a tu archivo de estilos CSS -->
+        <link rel="stylesheet" type="text/css" href="https://servicold.000webhostapp.com/css/styles.css">
+        <!-- Enlace a Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Enlace a JavaScript de Bootstrap 5 -->
+        <script src="https://servicold.000webhostapp.com/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body>
+    <header>
+        <div class="container-fluid text-center">
+            <!-- Nav principal con el logo -->
+            <nav class="navbar navbar-expand-md navbar-light justify-content-center">
+                <!-- Contenedor del logo -->
+                <div class="navbar-brand">
+                    <!-- Logo -->
+                    <a href="index.html">
+                        <img src="https://servicold.000webhostapp.com/src/logo-servicold.png" alt="Logo de ServiCold" class="logo" style="height: 60px;">
+                    </a>
+                </div>
+            </nav>
+            <!-- Nav delgado con los enlaces -->
+            <nav class="navbar navbar-expand-md navbar-light justify-content-end">
+                <!-- Contenedor de los enlaces -->
+                <div class="navbar-nav">
+                    <!-- Lista de enlaces -->
+                    <ul class="navbar-nav">
+                        <!-- Elemento de la lista para "Cerrar Sesión" -->
+                        <li class="nav-item">
+                            <a href="/back-end/logout.php" class="nav-link" style="font-size: 14px;">Cerrar Sesión</a>
+                        </li>
+                        <!-- Elemento de la lista para "Cambiar Contraseña" -->
+                        <li class="nav-item">
+                            <a href="cambiarPassword.html" class="nav-link" style="font-size: 14px;">Cambiar contraseña</a>
+                        </li>
+                        <!-- Elemento de la lista para "Ayuda" -->
+                        <li class="nav-item">
+                            <a href="Manual de usuario.pdf" class="nav-link" style="font-size: 14px;">Ayuda</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección principal -->
+        <div class="container principal">
+            <h1>FL-902</h1>
+            <!-- Campo de entrada para seleccionar la fecha -->
+            <label for="selectedDate">Selecciona la fecha:</label>
+            <input type="date" id="selectedDate">
+            <!-- Menú desplegable para seleccionar la cantidad de valores a visualizar -->
+            <div class="form-group mb-4">
+                <div class="row">
+                    <div class="col-md-3"> <!-- Cambia el tamaño de la columna a col-md-4 -->
+                        <label for="dataLimit" class="form-label">Cantidad de lecturas a mostrar:</label>
+                        <select id="dataLimit" name="dataLimit" onchange="handleDataLimitChange()" class="form-select">
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                            <option value="all">Todos</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Tabla para mostrar los resultados -->
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+                <table id="resultTable" class="table mt-4 col-md-12" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Nivel de Combustible (%)</th>
+                            <th style="width: 50%;">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultBody">
+                        <!-- Los resultados se agregarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Contenedor centrado para el gráfico -->
+            <div class="col-md-12" style="display: flex; justify-content: center; margin-top: 25px; width: 100%;">
+                <canvas id="sensorChart" style="width: 100%; max-width: 100%; height: 550px;"></canvas>
+            </div>
+        </div>
+            <!-- Enlace al archivo de scripts JavaScript -->
+        <script src="https://servicold.000webhostapp.com/fl902.js"></script>
+    </body>
+</html>

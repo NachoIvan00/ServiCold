@@ -1,0 +1,87 @@
+/* Estilos básicos para el formulario */
+/* Establece una imagen de fondo para toda la página */
+/* Estilo base del enlace */
+
+.navbar-nav.ml-auto {
+    margin-right: 0;
+}
+
+#main-link {
+    font-size: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: black; /* Color base del enlace (puedes cambiarlo) */
+}
+
+/* Cambia el color cuando el mouse pasa por encima del enlace */
+#main-link:hover {
+    color: blue; /* Cambia el color al pasar el mouse (puedes cambiarlo) */
+}
+
+/* Cambia el color cuando el enlace es clicado */
+#main-link:active {
+    color: red; /* Cambia el color al hacer clic (puedes cambiarlo) */
+}
+#sensorChart {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.sensor-link {
+    font-size: 16px; /* Tamaño de la fuente */
+    font-family: Arial, sans-serif; /* Tipo de letra */
+    /* Agrega más estilos según sea necesario */
+}
+
+
+body{
+    background-color: #fffbf4;
+}
+form {
+    margin: 20px;
+}
+label, input, button {
+    display: block;
+    margin: 5px;
+}
+/* Estilos para las etiquetas de los campos de temperatura */
+form label {
+    font-size: 18px; /* Cambia el tamaño de la fuente según tus preferencias */
+}
+
+/* Estilo para los campos de entrada de temperatura */
+form input[type="number"] {
+    font-size: 16px; /* Cambia el tamaño de la fuente según tus preferencias */
+}
+
+/* Estilos básicos para la tabla */
+table {
+    margin: 20px;
+    border-collapse: collapse;
+    width: 99%;
+}
+th, td {
+    border: 1px solid black;
+    font-size: 18px;
+    padding: 8px;
+    text-align: center;
+}
+/* Estilo para aumentar el tamaño de la fuente de la lista */
+ul li {
+    font-size: 1.2rem; /* Ajusta el tamaño según tus preferencias */
+}
+
+/* Si deseas ajustar solo los enlaces dentro de la lista */
+ul li a {
+    font-size: 1.2rem; /* Ajusta el tamaño según tus preferencias */
+}
+
+/* Estilo para centrar la imagen del logo */
+.logo {
+    display: block;
+    margin: 0 auto; /* Centra la imagen */
+    height: 50px; /* Ajusta la altura según sea necesario */
+}
+
+
