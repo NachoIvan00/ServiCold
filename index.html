@@ -65,6 +65,21 @@
     <!-- Sección principal -->
     <div class="container principal">
         <h1>Gestión</h1>
+        <button onclick="mostrarFormulario()">Opciones de Administrador</button>
+    
+    <div id="formularioAdmin" style="display:none;">
+        <form action="validar_admin.php" method="post">
+            <label for="password">Contraseña de Administrador:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+    
+    <script>
+        function mostrarFormulario() {
+            document.getElementById('formularioAdmin').style.display = 'block';
+        }
+    </script>
         <!-- Lista de administración -->
         <ul>
             <li>
@@ -74,6 +89,7 @@
             <!-- Puedes agregar más elementos de lista aquí si lo necesitas -->
         </ul>
     </div>
+    <script src="https://servicold.000webhostapp.com/verificarSesion.js"></script>
 </body>
 
 </html>

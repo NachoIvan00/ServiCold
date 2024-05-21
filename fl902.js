@@ -72,6 +72,68 @@ function filterDataByDate() {
     // Llama a loadAllData con la fecha seleccionada en el formato correcto
     loadAllData(selectedDate);
 }
+// Define el umbral de nivel de combustible mínimo
+const combustibleThreshold = 30; // Por ejemplo, 30%
+
+// Bandera para controlar si la alerta ya se ha emitido
+let alertEmitted = false;
+
+// Función para verificar los datos del sensor de nivel de combustible
+function checkCombustibleData() {
+    console.log("Se está ejecutando la función checkCombustibleData()");
+    // Realiza la solicitud HTTP GET para obtener los datos del sensor de nivel de combustible
+    fetch('https://servicold.000webhostapp.com/checkCombustible.php',  {cache: 'no-cache' })
+        .then(response => response.json())
+        .then(data => {
+            // Verifica si hay datos
+            if (Array.isArray(data) && data.length > 0) {
+                // Muestra los resultados y verifica las lecturas bajas
+                data.forEach(item => {
+                    // Verifica si el nivel de combustible está por debajo del umbral
+                    if (parseFloat(item.nivel_combustible) <= combustibleThreshold && !alertEmitted) {
+                        // Muestra una alerta en la página
+                        alert(`¡Alerta! Nivel de combustible bajo: ${item.nivel_combustible}%`);
+
+                        // Envía un correo electrónico de alerta
+                        sendEmailAlert();
+
+                        // Establece la bandera de alerta emitida en true para evitar emitirla nuevamente
+                        alertEmitted = true;
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            // Maneja los errores
+            console.error('Error al obtener los datos del sensor de nivel de combustible:', error);
+        });
+}
+
+// Función para enviar un correo electrónico de alerta
+function sendEmailAlert() {
+    console.log("Se llama la función sendEmailAlert()");
+    
+    // Construye los datos del formulario codificados
+    const formData = new FormData();
+    formData.append('to', 'nacho_xeneize00@hotmail.com');
+    formData.append('subject', 'Combustible bajo');
+    formData.append('message', 'El nivel de combustible de su tanque es menor al 30%');
+
+    fetch('https://servicold.000webhostapp.com/envioAlerta.php', {
+        method: 'POST',
+        body: formData // Pasa los datos del formulario
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data); // Muestra la respuesta del servidor en la consola
+    })
+    .catch(error => {
+        console.error('Error al enviar la solicitud:', error);
+    });
+}
+
+
+    
 
 
 // Función para formatear la fecha en el formato deseado
@@ -171,6 +233,7 @@ function verificarSesion(){
 
 window.onload = function() {
     verificarSesion();
+    checkCombustibleData();
     initializeChart();
     loadAllData(selectedDate);  // Verifica la sesión y carga los datos
 };

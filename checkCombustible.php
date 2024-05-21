@@ -14,16 +14,8 @@ include 'conexion.php';
 $response = [];
 
 if ($con) {
-    // Obtener el parámetro de fecha de la solicitud HTTP
-    $selectedDate = isset($_GET['selected_date']) ? $_GET['selected_date'] : null;
-
-    if ($selectedDate) {
-        // Modificar la consulta SQL para filtrar por fecha
-        $consulta = "SELECT nivel_combustible, fecha_actual FROM `FL902` WHERE DATE(fecha_actual) = '$selectedDate' ORDER BY fecha_actual DESC";
-    } else {
         // Consulta original sin filtro por fecha
-        $consulta = "SELECT nivel_combustible, fecha_actual FROM `FL902` ORDER BY fecha_actual DESC";
-    }
+        $consulta = "SELECT nivel_combustible, fecha_actual FROM `FL902` ORDER BY fecha_actual DESC LIMIT 1";
 
     // Ejecuta la consulta
     $resultado = mysqli_query($con, $consulta);

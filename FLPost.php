@@ -2,6 +2,7 @@
 
 include 'conexion.php';
 
+
 if ($con) {
     echo "Conexión con base de datos exitosa! ";
     
